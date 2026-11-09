@@ -163,7 +163,7 @@ Four tool names exist. Three are allowed. One is not.
 
 ```mermaid
 flowchart TD
-    call["Tool call"]
+    tool["Tool call"]
     policy{"evaluatePolicy"}
     allow["Allow"]
     tatum["Ask Tatum for a checkpoint"]
@@ -171,7 +171,7 @@ flowchart TD
     block["Block · no card payload"]
     sign["issueReceipt signs either way"]
 
-    call --> policy
+    tool --> policy
     policy -->|allow list| allow
     allow --> tatum
     tatum --> stamp
@@ -184,7 +184,7 @@ flowchart TD
     classDef engine fill:#EEF2FF,stroke:#1B4DFF,color:#0B0D12
     class allow,stamp ok
     class block bad
-    class call,policy,tatum,sign engine
+    class tool,policy,tatum,sign engine
 ```
 
 There is no second path that signs a receipt without `issueReceipt`. A feature that writes a success row without going through it is a hole.
