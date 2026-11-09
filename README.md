@@ -12,7 +12,7 @@ Total Recall hackathon · Consumer finance · Tatum × Walrus Memory.
 | Demo | [Watch the walkthrough](https://drive.google.com/file/d/1VFZILh8qhwD9U_Q-Yrua38f4RBavZFBc/view?usp=sharing) |
 | Run the proof | On your machine: `npm run dev`, then [http://localhost:3000/demo](http://localhost:3000/demo). Or `node --import tsx scripts/verify-e2e.mjs` |
 | What works today | [Below](#11-what-works-today) |
-| Blog | Not published yet. Draft: [docs/BLOG-total-recall.md](docs/BLOG-total-recall.md). Replace this line with the public URL when the post is live. |
+| Blog | [Your AI forgot you said no (Medium)](https://medium.com/@olagbemisoyee/your-ai-forgot-you-said-no-so-we-put-refusals-on-walrus-and-receipts-on-the-chain-801ba873aba8) · draft source: [docs/BLOG-total-recall.md](docs/BLOG-total-recall.md) |
 | Repo | Public: [github.com/datharnu/LedgerMind](https://github.com/datharnu/LedgerMind) |
 
 **Where the proof ran.** Walrus Memory writes use the Mainnet relayer `https://relayer.memory.walrus.xyz`. Tatum reads a Sui checkpoint from `https://sui-mainnet.gateway.tatum.io/graphql`. The optional receipt anchor is a Sui **testnet** transaction. It is not Mainnet.

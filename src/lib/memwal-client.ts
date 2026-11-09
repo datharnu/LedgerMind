@@ -2,6 +2,12 @@ import { MemWal } from "@mysten-incubation/memwal";
 import { getConfig, hasMemwalCredentials } from "@/lib/config";
 
 let client: MemWal | null = null;
+let clientNamespace: string | null = null;
+
+export function resetMemwalClient() {
+  client = null;
+  clientNamespace = null;
+}
 
 export function getMemwal(): MemWal {
   if (!hasMemwalCredentials()) {
@@ -9,14 +15,15 @@ export function getMemwal(): MemWal {
       "MEMWAL_PRIVATE_KEY and MEMWAL_ACCOUNT_ID are required for Walrus Memory",
     );
   }
-  if (!client) {
-    const cfg = getConfig();
+  const cfg = getConfig();
+  if (!client || clientNamespace !== cfg.MEMWAL_NAMESPACE) {
     client = MemWal.create({
       key: cfg.MEMWAL_PRIVATE_KEY!,
       accountId: cfg.MEMWAL_ACCOUNT_ID!,
       serverUrl: cfg.MEMWAL_RELAYER_URL,
       namespace: cfg.MEMWAL_NAMESPACE,
     });
+    clientNamespace = cfg.MEMWAL_NAMESPACE;
   }
   return client;
 }
@@ -40,7 +47,8 @@ export function formatSpendingMemory(input: {
 
 export async function rememberFact(text: string) {
   const memwal = getMemwal();
-  const stored = await memwal.rememberAndWait(text, undefined, {
+  const namespace = getConfig().MEMWAL_NAMESPACE;
+  const stored = await memwal.rememberAndWait(text, namespace, {
     timeoutMs: 60_000,
   });
   return {
@@ -52,10 +60,12 @@ export async function rememberFact(text: string) {
 
 export async function recallSpendingRules(limit = 5) {
   const memwal = getMemwal();
+  const namespace = getConfig().MEMWAL_NAMESPACE;
   return memwal.recall({
     query: "user spending limits rejected subscriptions price caps",
     limit,
     maxDistance: 0.75,
+    namespace,
   });
 }
 
