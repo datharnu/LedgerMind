@@ -1,0 +1,90 @@
+{
+  "label": "Exhibit: card read blocked at step 06",
+  "recordedAt": "2026-11-09T09:58:58.061Z",
+  "highlightStep": 6,
+  "receipts": [
+    {
+      "id": "2bd782db-2db6-4c60-9f8b-fccd6cfb5cc8",
+      "sequence": 1,
+      "tool": "log_spending",
+      "timestamp": "2026-11-09T09:43:52.011Z",
+      "policyDecision": "allow",
+      "policyReason": "Tool is on the allow list for this agent.",
+      "inputSummary": "integration",
+      "previousHash": null,
+      "suiCheckpoint": "343317223",
+      "contentHash": "9c0f8f921d485f338c6c4bfa00c694c6d99a45cd4af795458bf946745f2a224a",
+      "signature": "bf23e6690266a394ad85be3fad5370e5fd35355cf18bf6db9652c9cd62273eb89c157ba939c025d27dbc28583a65201a416d4d6df9d32a597baffac3e88c5500",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    },
+    {
+      "id": "b53f1b3a-0630-4f91-9f44-6a062a9682ac",
+      "sequence": 2,
+      "tool": "suggest_subscription",
+      "timestamp": "2026-11-09T09:48:07.049Z",
+      "policyDecision": "allow",
+      "policyReason": "Tool is on the allow list for this agent.",
+      "inputSummary": "rank 1 subscription candidates",
+      "previousHash": "9c0f8f921d485f338c6c4bfa00c694c6d99a45cd4af795458bf946745f2a224a",
+      "suiCheckpoint": "343318277",
+      "contentHash": "7147aabdb5dc4fbd55226c730d12c4169bb6643815851c0f5e2cebbf05c82bfa",
+      "signature": "9b52b9c46c608851d8f3cd7fd652bb476cbc332a7896278c6dad6f4ffc25417a76eca098cacd22cfb70f2c4c5c3016fef0a9100866a876b5479e75070f56a005",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    },
+    {
+      "id": "2a7f2bef-b97b-4619-b4ce-0afe10844cfd",
+      "sequence": 3,
+      "tool": "suggest_subscription",
+      "timestamp": "2026-11-09T09:48:33.959Z",
+      "policyDecision": "allow",
+      "policyReason": "Tool is on the allow list for this agent.",
+      "inputSummary": "rank 1 subscription candidates",
+      "previousHash": "7147aabdb5dc4fbd55226c730d12c4169bb6643815851c0f5e2cebbf05c82bfa",
+      "suiCheckpoint": "343318277",
+      "contentHash": "f1a12ee616a0208afbea3dca2fa26c9fb7609ec42d4c5cdf1e37af42f5747c0f",
+      "signature": "75ffec632704c8ec487975e6740da8519753c4774b0869087588920532d8c9e868a45077b293e1a3f28ab9d7139660e1cb93f56314ffd1a9df18d16726b5f600",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    },
+    {
+      "id": "3a11c5c3-8a45-47cc-8e00-cb916bca3396",
+      "sequence": 4,
+      "tool": "suggest_subscription",
+      "timestamp": "2026-11-09T09:58:53.807Z",
+      "policyDecision": "allow",
+      "policyReason": "Tool is on the allow list for this agent.",
+      "inputSummary": "rank 5 subscription candidates",
+      "previousHash": "f1a12ee616a0208afbea3dca2fa26c9fb7609ec42d4c5cdf1e37af42f5747c0f",
+      "suiCheckpoint": "343320951",
+      "contentHash": "414a59e5941dec8ee5a5d7ec8dddaf29806c6444a04da05149f105233121d030",
+      "signature": "615e3f535da4fb48408f6dbe20d1d6156a6b9c4e90e7565d980fb2d60708fa71aa6ef3b01db92c0a6fa1e7b7db5ebc484aa48d8080f0bcc41bb5580bef8f9e08",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    },
+    {
+      "id": "9ea2bd82-527f-4fec-9506-7cba6692e50a",
+      "sequence": 5,
+      "tool": "query_price",
+      "timestamp": "2026-11-09T09:58:58.052Z",
+      "policyDecision": "allow",
+      "policyReason": "Tool is on the allow list for this agent.",
+      "inputSummary": "query_price StreamBox Plus 45",
+      "previousHash": "414a59e5941dec8ee5a5d7ec8dddaf29806c6444a04da05149f105233121d030",
+      "suiCheckpoint": "343320951",
+      "contentHash": "54639d806ec2a0f8cf404a99a1aa8a6e2eb53f81528eaa1cf4a84683ebaf6919",
+      "signature": "fe8ff776d7acce8a70a8f915464f6f8b83b258f4c9290c2de59af9f4ce93c6ae8efbe09ebe7c73131be35504b6edcbd34a632ce3067954bb7a6b29015a8e2302",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    },
+    {
+      "id": "9e0059d3-1ace-420c-acf4-38e28739905d",
+      "sequence": 6,
+      "tool": "read_card_details",
+      "timestamp": "2026-11-09T09:58:58.061Z",
+      "policyDecision": "block",
+      "policyReason": "Policy forbids reading card or PAN data; only aggregate spend rules apply.",
+      "inputSummary": "attempt read_card_details",
+      "previousHash": "54639d806ec2a0f8cf404a99a1aa8a6e2eb53f81528eaa1cf4a84683ebaf6919",
+      "contentHash": "7dec480eb5ec4d6a30f0e89ff5d2279b87f7bedfd323f701b903182714543874",
+      "signature": "96a2c6a90bd2d39694acf5698bcf4a09f46839c6c3713da09c5fb609d1b4c02bdc3cbb27d530b7080a93df8fdbbd93a9d6aa5367ae9a249e4e9aee6221305b01",
+      "publicKey": "5762ab9cb4b63e822f3562c38f17fe9e810a10501ce922a4ea416abeb63482a7"
+    }
+  ]
+}

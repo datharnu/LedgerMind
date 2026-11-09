@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+.env.*
+!.env.example
+data/receipts.json
+data/sui-anchor-package.json
+data/receipt-anchors.json
+move/ledgermind/build/
+*.tsbuildinfo
+next-env.d.ts
