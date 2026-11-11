@@ -17,7 +17,7 @@ Total Recall hackathon · Consumer finance · Tatum × Walrus Memory.
 
 **Where the proof ran.** Walrus Memory writes use the Mainnet relayer `https://relayer.memory.walrus.xyz`. Tatum reads a Sui checkpoint from `https://sui-mainnet.gateway.tatum.io/graphql`. The optional receipt anchor is a Sui **testnet** transaction. It is not Mainnet.
 
-The public site is the landing page and the desk chrome. On 9 November 2026 the hosted desk could not finish a suggestion: `GET https://ledger-m.vercel.app/api/suggest` returned HTTP 500, `ENOENT: mkdir '/var/task/data'`. Vercel cannot create `data/receipts.json`. The same deploy had Walrus, Tatum, and the testnet key configured (`/api/health`). The $45 loop in the table below was run locally, not on that URL. `/verify` on the public site still loads the offline exhibit.
+The public site is the landing page and the desk. On 9 November 2026 the hosted desk could not finish a suggestion: `GET https://ledger-m.vercel.app/api/suggest` returned HTTP 500, `ENOENT: mkdir '/var/task/data'`. That failure stays in this record. The write now goes to `/tmp/ledgermind` on Vercel, because `/var/task` is read-only. `/tmp` lasts for one function instance and is empty after a cold start, so the hosted tape is not the local `data/receipts.json`. The $45 loop in the table below was run locally. `/verify` on the public site still loads the offline exhibit.
 
 One observed loop, 9 November 2026: a fresh namespace, one rejection, blob `WhWDQ7OAtumfwG33s7rnhMeFlOiiASz7n_Ut5_xIrFY`, receipt `c6523bf0-4e28-4728-a13b-e8fd37e746df` with `suiCheckpoint=343382222`.
 
@@ -275,7 +275,7 @@ npm run dev
 | `SUI_ANCHOR_PACKAGE_ID` | Set after `npm run publish:anchor` | Optional testnet package |
 | `PUBLIC_MEMORY_BLOB_IDS` | Comma-separated blob ids | Optional, when the memory API cannot list |
 
-Run these steps with `npm run dev`. The public URL shows the pages. It does not append the tape.
+Run these steps with `npm run dev`. The public URL appends receipts under `/tmp/ledgermind` for that function instance. A new instance starts an empty tape. The local file `data/receipts.json` is the one this section describes.
 
 | Step | Do this | You should see |
 | :--- | :--- | :--- |
@@ -314,7 +314,7 @@ node --import tsx scripts/verify-e2e.mjs
 
 **Open.** The live `data/receipts.json` on a long demo session can FAIL the chain check because suggestion requests have shared sequence numbers. The fix is to stop concurrent writers from minting the same sequence. Rewriting the file to print PASS is not the fix.
 
-The hosted desk has the same hole in a sharper form. [ledger-m.vercel.app](https://ledger-m.vercel.app) returns 500 from `/api/suggest` because the server tries to `mkdir` `data/` inside the Vercel function filesystem. Keys are present. The write has nowhere to land. Pointing the store at `/tmp` would survive one warm instance and still disappear on the next cold start. A durable tape needs a store, and this repo does not have one. Until that exists, judge the loop on `npm run dev`.
+The 9 November `mkdir '/var/task/data'` failure is fixed by writing the hosted tape to `/tmp/ledgermind`. That directory survives one warm instance and disappears on the next cold start. A durable tape shared across instances is still absent. Judge the recorded $45 loop on `npm run dev`.
 
 ## License
 

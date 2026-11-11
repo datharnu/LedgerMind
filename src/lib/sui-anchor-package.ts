@@ -1,8 +1,11 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { getConfig, SUI_FRAMEWORK_PACKAGE_ID } from "@/lib/config";
+import { dataDir } from "@/lib/data-dir";
 
-const DATA = path.join(process.cwd(), "data", "sui-anchor-package.json");
+function packageFile(): string {
+  return path.join(dataDir(), "sui-anchor-package.json");
+}
 const MODULE_PATH = path.join(process.cwd(), "move", "artifacts", "anchor.mv");
 
 export type AnchorPackageRecord = {
@@ -14,9 +17,10 @@ export type AnchorPackageRecord = {
 export function loadAnchorPackageId(): string | null {
   const envId = getConfig().SUI_ANCHOR_PACKAGE_ID;
   if (envId) return envId;
-  if (!existsSync(DATA)) return null;
+  const data = packageFile();
+  if (!existsSync(data)) return null;
   try {
-    const rec = JSON.parse(readFileSync(DATA, "utf8")) as AnchorPackageRecord;
+    const rec = JSON.parse(readFileSync(data, "utf8")) as AnchorPackageRecord;
     return rec.packageId ?? null;
   } catch {
     return null;
@@ -24,8 +28,9 @@ export function loadAnchorPackageId(): string | null {
 }
 
 export function saveAnchorPackageRecord(record: AnchorPackageRecord) {
-  mkdirSync(path.dirname(DATA), { recursive: true });
-  writeFileSync(DATA, JSON.stringify(record, null, 2));
+  const data = packageFile();
+  mkdirSync(path.dirname(data), { recursive: true });
+  writeFileSync(data, JSON.stringify(record, null, 2));
 }
 
 export function loadAnchorModuleBytes(): Uint8Array {
